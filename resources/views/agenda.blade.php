@@ -1,0 +1,7 @@
+@extends('layouts.app')
+@section('content')
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-4">Agenda Kegiatan</h1>
+    <p>Jadwal dan agenda kegiatan Desa Sei Lala.</p>
+</div>
+@endsection
