@@ -13,7 +13,7 @@
             <div class="font-bold text-lg mb-1">Aspirasi & Saran</div>
             <span class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold shadow hover:bg-yellow-600 transition">Kelola Aspirasi</span>
         </a>
-        <a href="{{ route('admin.layanan.surat') }}" class="bg-green-50 hover:bg-green-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <a href="#" onclick="event.preventDefault(); showSuratNotif();" class="bg-green-50 hover:bg-green-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
             <span class="material-icons text-3xl text-green-600 mb-2">description</span>
             <div class="font-bold text-lg mb-1">Pembuatan Surat</div>
             <span class="bg-green-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-green-700 transition">Kelola Surat</span>
@@ -32,5 +32,30 @@
         duration: 1000,
         once: true,
     });
+
+    function showSuratNotif() {
+        if (document.getElementById('surat-notif')) return;
+        const notif = document.createElement('div');
+        notif.id = 'surat-notif';
+        notif.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 bg-yellow-100 text-yellow-800 px-6 py-3 rounded shadow-lg text-lg font-semibold z-50 animate-bounce';
+        notif.innerText = 'Maaf, fitur ini masih dalam tahap pengembangan';
+        document.body.appendChild(notif);
+        setTimeout(() => {
+            notif.classList.add('animate-fadeOut');
+            setTimeout(() => notif.remove(), 800);
+        }, 2000);
+    }
 </script>
+<style>
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
+
+    .animate-fadeOut {
+        animation: fadeOut 0.8s forwards;
+    }
+</style>
 @endsection

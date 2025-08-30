@@ -71,9 +71,23 @@ Route::post('/aspirasi', [AspirasiController::class, 'store'])->name('aspirasi.s
 Route::get('/darurat', function () {
     return view('darurat');
 })->name('darurat');
+
+use App\Models\Pengaduan;
+
+
 Route::get('/admin/layanan/pengaduan', function () {
-    return view('admin.layanan_pengaduan');
+    $pengaduan = Pengaduan::all();
+    return view('admin.layanan_pengaduan', compact('pengaduan'));
 })->name('admin.layanan.pengaduan');
+
+Route::delete('/admin/layanan/pengaduan/{id}', function ($id) {
+    $pengaduan = \App\Models\Pengaduan::find($id);
+    if ($pengaduan) {
+        $pengaduan->delete();
+        return redirect()->route('admin.layanan.pengaduan')->with('success', 'Pengaduan berhasil dihapus');
+    }
+    return redirect()->route('admin.layanan.pengaduan')->with('error', 'Pengaduan tidak ditemukan');
+})->name('admin.layanan.pengaduan.delete');
 Route::get('/admin/layanan/aspirasi', function () {
     return view('admin.layanan_aspirasi');
 })->name('admin.layanan.aspirasi');
@@ -83,3 +97,27 @@ Route::get('/admin/layanan/surat', function () {
 Route::get('/admin/layanan/darurat', function () {
     return view('admin.layanan_darurat');
 })->name('admin.layanan.darurat');
+Route::get('/berita/{id}', function ($id) {
+    $berita = [
+        1 => [
+            'judul' => 'Pembangunan Jalan Baru',
+            'gambar' => 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
+            'tanggal' => '28 Agustus 2025',
+            'isi' => 'Pemerintah desa memulai pembangunan jalan baru untuk meningkatkan akses warga ke pusat desa. Proyek ini diharapkan selesai dalam waktu 3 bulan dan melibatkan partisipasi aktif masyarakat.'
+        ],
+        2 => [
+            'judul' => 'Pelatihan UMKM',
+            'gambar' => 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80',
+            'tanggal' => '25 Agustus 2025',
+            'isi' => 'Warga desa mengikuti pelatihan UMKM untuk meningkatkan keterampilan dan perekonomian lokal. Pelatihan ini diadakan selama 2 hari dan diikuti oleh 50 peserta.'
+        ],
+        3 => [
+            'judul' => 'Festival Budaya Desa',
+            'gambar' => 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
+            'tanggal' => '20 Agustus 2025',
+            'isi' => 'Desa mengadakan festival budaya tahunan untuk melestarikan tradisi dan mempererat silaturahmi warga. Acara ini dimeriahkan oleh berbagai pertunjukan seni dan bazar makanan tradisional.'
+        ],
+    ];
+    if (!isset($berita[$id])) abort(404);
+    return view('berita_detail', ['berita' => $berita[$id]]);
+})->name('berita.detail');
