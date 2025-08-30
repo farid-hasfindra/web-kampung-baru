@@ -19,23 +19,44 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-sm py-2 px-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
-            <img src="/images/logo/logo-siak.png" alt="Logo" class="h-10 w-10">
+            <img src="{{ asset('images/logo/logo-siak.png') }}" alt="Logo" class="h-10 w-10">
             <div>
                 <span class="font-bold text-lg text-gray-800 block leading-tight">Kampung Tualang Timur</span>
                 <span class="text-xs text-gray-500">Kabupaten Siak</span>
             </div>
         </div>
-        <ul class="hidden md:flex gap-6 text-sm font-medium text-gray-700">
-            <li><a href="#" class="hover:text-blue-600">Beranda</a></li>
-            <li><a href="{{ route('layanan') }}" class="hover:text-blue-600">Layanan Kampung</a></li>
-            <li><a href="{{ route('berita') }}" class="hover:text-blue-600">Berita</a></li>
-            <li><a href="{{ route('perangkat') }}" class="hover:text-blue-600">Perangkat Kampung</a></li>
-            <li><a href="{{ route('potensi') }}" class="hover:text-blue-600">Potensi Kampung</a></li>
-            <li><a href="{{ route('tentang') }}" class="hover:text-blue-600">Tentang Kampung</a></li>
+        <ul class="hidden md:flex gap-6 text-base font-semibold text-gray-700">
+            <li><a href="#" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Beranda
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
+            <li><a href="{{ route('layanan') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Layanan Kampung
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
+            <li><a href="{{ route('berita') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Berita
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
+            <li><a href="{{ route('perangkat') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Perangkat Kampung
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
+            <li><a href="{{ route('potensi') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Potensi Kampung
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
+            <li><a href="{{ route('galeri') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Galeri
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
+            <li><a href="{{ route('tentang') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
+                    Tentang Kampung
+                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a></li>
         </ul>
         <div class="flex gap-2">
-            <a href="#" class="text-blue-600 font-medium hover:underline">Login</a>
-            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-blue-700 transition">Kontak</a>
+            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-blue-700 transition">Login Admin</a>
         </div>
     </nav>
     <!-- Hero Section -->
@@ -48,5 +69,29 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-2 text-white drop-shadow">Kampung Tualang Timur</h1>
             <h2 class="text-xl md:text-2xl mb-6 font-medium text-white drop-shadow">Kabupaten Siak, Provinsi Riau</h2>
         </div>
+    </section>
+    <!-- Content Section -->
+    <main class="flex-grow">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            @yield('content')
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-white py-4">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="border-t border-gray-200 pt-4">
+                <p class="text-center text-sm text-gray-500">&copy; 2023 Kampung Tualang Timur. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    </script>
+</body>
 
-        
+</html>

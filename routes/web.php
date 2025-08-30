@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\AspirasiController;
+
+Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
+Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,4 +33,16 @@ Route::get('/galeri', function () {
 Route::get('/tentang', function () {
     return view('tentang');
 })->name('tentang');
-// ...existing code...
+
+Route::get('/admin/dashboard', function () {
+    if (!session('admin_logged_in')) {
+        return redirect()->route('login');
+    }
+    return view('admin.dashboard');
+})->name('admin.dashboard');
+
+Route::get('/pengaduan', [PengaduanController::class, 'create'])->name('pengaduan.create');
+Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
+
+Route::get('/aspirasi', [AspirasiController::class, 'create'])->name('aspirasi.create');
+Route::post('/aspirasi', [AspirasiController::class, 'store'])->name('aspirasi.store');
