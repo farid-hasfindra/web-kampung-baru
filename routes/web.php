@@ -71,3 +71,15 @@ Route::post('/aspirasi', [AspirasiController::class, 'store'])->name('aspirasi.s
 Route::get('/darurat', function () {
     return view('darurat');
 })->name('darurat');
+Route::get('/admin/layanan/pengaduan', function () {
+    return view('admin.layanan_pengaduan');
+})->name('admin.layanan.pengaduan');
+Route::get('/admin/layanan/aspirasi', function () {
+    return view('admin.layanan_aspirasi');
+})->name('admin.layanan.aspirasi');
+Route::get('/admin/layanan/surat', function () {
+    return view('admin.layanan_surat');
+})->name('admin.layanan.surat');
+Route::get('/admin/layanan/darurat', function () {
+    return view('admin.layanan_darurat');
+})->name('admin.layanan.darurat');
