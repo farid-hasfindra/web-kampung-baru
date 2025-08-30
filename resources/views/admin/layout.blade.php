@@ -31,7 +31,13 @@
                     <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">description</span> Docs</a></li>
                 </ul>
             </nav>
-            <div class="px-6 py-4 border-t border-gray-800 text-sm text-gray-400">&copy; 2025 Kampung Admin</div>
+            <form method="POST" action="{{ route('logout') }}" class="px-6 py-4 border-t border-gray-800">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-semibold transition">
+                    <span class="material-icons">logout</span> Logout
+                </button>
+            </form>
+            <div class="px-6 pt-2 pb-2 text-sm text-gray-400">&copy; 2025 Kampung Admin</div>
         </aside>
         <!-- Main -->
         <main class="flex-1">

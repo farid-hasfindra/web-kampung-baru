@@ -17,14 +17,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($darurat as $item)
                     <tr class="border-b hover:bg-red-50">
-                        <td class="py-2">Damkar</td>
-                        <td class="py-2">0812-3456-7890</td>
+                        <td class="py-2">{{ $item->nama_instansi }}</td>
+                        <td class="py-2">{{ $item->kontak }}</td>
                         <td class="py-2 flex gap-2">
-                            <a href="#" class="bg-blue-500 text-white px-2 py-1 rounded text-xs hover:bg-blue-600 transition">Edit</a>
-                            <a href="#" class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600 transition">Hapus</a>
+                            <!-- Tombol Edit dan Hapus bisa ditambahkan di sini jika diperlukan -->
                         </td>
                     </tr>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="py-4 text-center text-gray-500">Belum ada data darurat.</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

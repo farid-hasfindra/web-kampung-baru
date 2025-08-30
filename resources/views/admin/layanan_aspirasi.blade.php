@@ -5,7 +5,6 @@
     <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-up">
         <div class="flex justify-between items-center mb-6">
             <span class="font-bold text-lg">Daftar Aspirasi</span>
-            <a href="#" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold shadow hover:bg-yellow-600 transition">Tambah Aspirasi</a>
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full text-left">
@@ -17,14 +16,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($aspirasi as $item)
                     <tr class="border-b hover:bg-yellow-50">
-                        <td class="py-2">Contoh Nama</td>
-                        <td class="py-2">Isi aspirasi...</td>
+                        <td class="py-2">{{ $item->nama }}</td>
+                        <td class="py-2">{{ $item->isi }}</td>
                         <td class="py-2 flex gap-2">
-                            <a href="#" class="bg-blue-500 text-white px-2 py-1 rounded text-xs hover:bg-blue-600 transition">Edit</a>
-                            <a href="#" class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600 transition">Hapus</a>
+                            <form action="{{ route('admin.layanan.aspirasi.delete', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus aspirasi ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600 transition">Hapus</button>
+                            </form>
                         </td>
                     </tr>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="py-4 text-center text-gray-500">Belum ada aspirasi.</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

@@ -88,14 +88,30 @@ Route::delete('/admin/layanan/pengaduan/{id}', function ($id) {
     }
     return redirect()->route('admin.layanan.pengaduan')->with('error', 'Pengaduan tidak ditemukan');
 })->name('admin.layanan.pengaduan.delete');
+
+use App\Models\Aspirasi;
+
 Route::get('/admin/layanan/aspirasi', function () {
-    return view('admin.layanan_aspirasi');
+    $aspirasi = Aspirasi::all();
+    return view('admin.layanan_aspirasi', compact('aspirasi'));
 })->name('admin.layanan.aspirasi');
+Route::delete('/admin/layanan/aspirasi/{id}', function ($id) {
+    $aspirasi = Aspirasi::find($id);
+    if ($aspirasi) {
+        $aspirasi->delete();
+        return redirect()->route('admin.layanan.aspirasi')->with('success', 'Aspirasi berhasil dihapus');
+    }
+    return redirect()->route('admin.layanan.aspirasi')->with('error', 'Aspirasi tidak ditemukan');
+})->name('admin.layanan.aspirasi.delete');
 Route::get('/admin/layanan/surat', function () {
     return view('admin.layanan_surat');
 })->name('admin.layanan.surat');
+
+use App\Models\Darurat;
+
 Route::get('/admin/layanan/darurat', function () {
-    return view('admin.layanan_darurat');
+    $darurat = Darurat::all();
+    return view('admin.layanan_darurat', compact('darurat'));
 })->name('admin.layanan.darurat');
 Route::get('/berita/{id}', function ($id) {
     $berita = [
