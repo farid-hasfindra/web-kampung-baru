@@ -25,7 +25,7 @@
             <img src="https://img.icons8.com/fluency/64/000000/emergency.png" class="mb-4" alt="Darurat" />
             <h2 class="text-xl font-semibold mb-2 text-red-600">Layanan Darurat</h2>
             <p class="text-gray-600 text-center mb-4">Informasi kontak darurat: pemadam, polisi, rumah sakit terdekat.</p>
-            <a href="#" class="bg-red-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-red-700 transition">Lihat Kontak Darurat</a>
+            <a href="{{ route('darurat') }}" class="bg-red-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-red-700 transition">Lihat Kontak Darurat</a>
         </div>
     </div>
 </div>

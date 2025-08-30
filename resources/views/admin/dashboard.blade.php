@@ -7,7 +7,7 @@
         <nav class="flex-1 px-4 py-6">
             <ul class="space-y-2">
                 <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded bg-gray-800 font-semibold"><span class="material-icons">home</span> Dashboard</a></li>
-                <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">layers</span> Pages</a></li>
+                <li><a href="{{ route('admin.konten') }}" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">layers</span> Kelola Konten</a></li>
                 <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">lock</span> Authentication</a></li>
                 <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">dashboard_customize</span> Layouts</a></li>
                 <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">widgets</span> Components</a></li>

@@ -18,7 +18,8 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-sm py-2 px-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
-            <img src="/images/logo/logo-siak.png" alt="Logo" class="h-10 w-10">
+            <img src="{{ asset('images/logo/logo-siak.png') }}" alt="Logo" class="h-12 w-12 object-contain"
+                style="max-width:3rem; max-height:3rem;">
             <div>
                 <span class="font-bold text-lg text-gray-800 block leading-tight">Kampung Tualang Timur</span>
                 <span class="text-xs text-gray-500">Kabupaten Siak</span>

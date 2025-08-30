@@ -41,8 +41,33 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
 
+Route::get('/admin/kelola-konten', function () {
+    return view('admin.konten');
+})->name('admin.konten');
+Route::get('/admin/layanan', function () {
+    return view('admin.layanan');
+})->name('admin.layanan');
+Route::get('/admin/berita', function () {
+    return view('admin.berita');
+})->name('admin.berita');
+Route::get('/admin/perangkat', function () {
+    return view('admin.perangkat');
+})->name('admin.perangkat');
+Route::get('/admin/potensi', function () {
+    return view('admin.potensi');
+})->name('admin.potensi');
+Route::get('/admin/galeri', function () {
+    return view('admin.galeri');
+})->name('admin.galeri');
+Route::get('/admin/tentang', function () {
+    return view('admin.tentang');
+})->name('admin.tentang');
+
 Route::get('/pengaduan', [PengaduanController::class, 'create'])->name('pengaduan.create');
 Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
 
 Route::get('/aspirasi', [AspirasiController::class, 'create'])->name('aspirasi.create');
 Route::post('/aspirasi', [AspirasiController::class, 'store'])->name('aspirasi.store');
+Route::get('/darurat', function () {
+    return view('darurat');
+})->name('darurat');
