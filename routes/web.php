@@ -14,8 +14,12 @@ Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('welcome');
 })->name('beranda');
+
+use App\Models\Berita;
+
 Route::get('/berita', function () {
-    return view('berita');
+    $beritas = Berita::orderBy('tanggal', 'desc')->get();
+    return view('berita', compact('beritas'));
 })->name('berita');
 Route::get('/agenda', function () {
     return view('agenda');
@@ -32,6 +36,11 @@ Route::get('/perangkat', function () {
 Route::get('/galeri', function () {
     return view('galeri');
 })->name('galeri');
+// Route detail perangkat
+Route::get('/perangkat/{id}', function ($id) {
+    // Anda bisa mengganti ini dengan controller jika sudah ada
+    return view('perangkat_detail', ['id' => $id]);
+})->name('perangkat.detail');
 Route::get('/tentang', function () {
     return view('tentang');
 })->name('tentang');
@@ -139,31 +148,19 @@ Route::delete('/admin/layanan/darurat/{id}', function ($id) {
     return redirect()->route('admin.layanan.darurat');
 })->name('admin.layanan.darurat.delete');
 
+use App\Http\Controllers\BeritaController;
+
+Route::get('/admin/berita', [BeritaController::class, 'index'])->name('admin.berita');
+Route::get('/admin/berita/create', [BeritaController::class, 'create'])->name('admin.berita.create');
+Route::post('/admin/berita', [BeritaController::class, 'store'])->name('admin.berita.store');
+Route::get('/admin/berita/{id}/edit', [BeritaController::class, 'edit'])->name('admin.berita.edit');
+Route::put('/admin/berita/{id}', [BeritaController::class, 'update'])->name('admin.berita.update');
+Route::delete('/admin/berita/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.delete');
 Route::get('/admin/layanan/darurat', function () {
     $darurats = Darurat::all();
     return view('admin.layanan_darurat', compact('darurats'));
 })->name('admin.layanan.darurat');
 Route::get('/berita/{id}', function ($id) {
-    $berita = [
-        1 => [
-            'judul' => 'Pembangunan Jalan Baru',
-            'gambar' => 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
-            'tanggal' => '28 Agustus 2025',
-            'isi' => 'Pemerintah desa memulai pembangunan jalan baru untuk meningkatkan akses warga ke pusat desa. Proyek ini diharapkan selesai dalam waktu 3 bulan dan melibatkan partisipasi aktif masyarakat.'
-        ],
-        2 => [
-            'judul' => 'Pelatihan UMKM',
-            'gambar' => 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80',
-            'tanggal' => '25 Agustus 2025',
-            'isi' => 'Warga desa mengikuti pelatihan UMKM untuk meningkatkan keterampilan dan perekonomian lokal. Pelatihan ini diadakan selama 2 hari dan diikuti oleh 50 peserta.'
-        ],
-        3 => [
-            'judul' => 'Festival Budaya Desa',
-            'gambar' => 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
-            'tanggal' => '20 Agustus 2025',
-            'isi' => 'Desa mengadakan festival budaya tahunan untuk melestarikan tradisi dan mempererat silaturahmi warga. Acara ini dimeriahkan oleh berbagai pertunjukan seni dan bazar makanan tradisional.'
-        ],
-    ];
-    if (!isset($berita[$id])) abort(404);
-    return view('berita_detail', ['berita' => $berita[$id]]);
+    $berita = Berita::findOrFail($id);
+    return view('berita_detail', compact('berita'));
 })->name('berita.detail');
