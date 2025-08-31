@@ -2,14 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Darurat extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'nama_instansi',
-        'kontak',
-    ];
+    protected $table = 'darurats';
+    protected $fillable = ['nama_instansi', 'kontak'];
 }

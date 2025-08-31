@@ -1,9 +1,11 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\AspirasiController;
+use App\Models\Darurat;
 
 Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
@@ -68,8 +70,11 @@ Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengadua
 
 Route::get('/aspirasi', [AspirasiController::class, 'create'])->name('aspirasi.create');
 Route::post('/aspirasi', [AspirasiController::class, 'store'])->name('aspirasi.store');
+
+
 Route::get('/darurat', function () {
-    return view('darurat');
+    $darurats = Darurat::all();
+    return view('darurat', compact('darurats'));
 })->name('darurat');
 
 use App\Models\Pengaduan;
@@ -107,11 +112,36 @@ Route::get('/admin/layanan/surat', function () {
     return view('admin.layanan_surat');
 })->name('admin.layanan.surat');
 
-use App\Models\Darurat;
+use Illuminate\Http\Request;
+// Route untuk tambah kontak darurat
+Route::post('/admin/layanan/darurat', function (Request $request) {
+    Darurat::create([
+        'nama_instansi' => $request->nama_instansi,
+        'kontak' => $request->kontak,
+    ]);
+    return redirect()->route('admin.layanan.darurat');
+})->name('admin.layanan.darurat.store');
+
+// Route untuk update kontak darurat
+Route::put('/admin/layanan/darurat/{id}', function (Request $request, $id) {
+    $darurat = Darurat::findOrFail($id);
+    $darurat->update([
+        'nama_instansi' => $request->nama_instansi,
+        'kontak' => $request->kontak,
+    ]);
+    return redirect()->route('admin.layanan.darurat');
+})->name('admin.layanan.darurat.update');
+
+// Route untuk hapus kontak darurat
+Route::delete('/admin/layanan/darurat/{id}', function ($id) {
+    $darurat = Darurat::findOrFail($id);
+    $darurat->delete();
+    return redirect()->route('admin.layanan.darurat');
+})->name('admin.layanan.darurat.delete');
 
 Route::get('/admin/layanan/darurat', function () {
-    $darurat = Darurat::all();
-    return view('admin.layanan_darurat', compact('darurat'));
+    $darurats = Darurat::all();
+    return view('admin.layanan_darurat', compact('darurats'));
 })->name('admin.layanan.darurat');
 Route::get('/berita/{id}', function ($id) {
     $berita = [
