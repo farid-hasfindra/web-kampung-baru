@@ -1,8 +1,16 @@
+use App\Http\Controllers\GaleriController;
+
+// ...existing code...
+
+Route::resource('admin/galeri', GaleriController::class);
 
 <?php
 
+use App\Models\Potensi;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\AspirasiController;
 use App\Models\Darurat;
@@ -11,11 +19,18 @@ Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login
 Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
+Route::get('/potensi/{id}', function ($id) {
+    $potensi = Potensi::findOrFail($id);
+    return view('potensi_detail', compact('potensi'));
+})->name('potensi.detail');
+
+Route::resource('admin/potensi', PotensiController::class);
 Route::get('/', function () {
     return view('welcome');
 })->name('beranda');
 
 use App\Models\Berita;
+use App\Http\Controllers\PerangkatController;
 
 Route::get('/berita', function () {
     $beritas = Berita::orderBy('tanggal', 'desc')->get();
@@ -25,21 +40,29 @@ Route::get('/agenda', function () {
     return view('agenda');
 })->name('agenda');
 Route::get('/potensi', function () {
-    return view('potensi');
+    $potensis = App\Models\Potensi::all();
+    return view('potensi', compact('potensis'));
 })->name('potensi');
 Route::get('/layanan', function () {
     return view('layanan');
 })->name('layanan');
+
+use App\Models\Perangkat;
+
 Route::get('/perangkat', function () {
-    return view('perangkat');
+    $perangkats = Perangkat::all();
+    return view('perangkat', compact('perangkats'));
 })->name('perangkat');
+use App\Models\Galeri;
 Route::get('/galeri', function () {
-    return view('galeri');
+    $galeris = Galeri::all();
+    return view('galeri', compact('galeris'));
 })->name('galeri');
-// Route detail perangkat
+// Route detail perangkat dari database
 Route::get('/perangkat/{id}', function ($id) {
-    // Anda bisa mengganti ini dengan controller jika sudah ada
-    return view('perangkat_detail', ['id' => $id]);
+    $perangkat = Perangkat::find($id);
+    if (!$perangkat) abort(404);
+    return view('perangkat_detail', compact('perangkat'));
 })->name('perangkat.detail');
 Route::get('/tentang', function () {
     return view('tentang');
@@ -61,12 +84,12 @@ Route::get('/admin/layanan', function () {
 Route::get('/admin/berita', function () {
     return view('admin.berita');
 })->name('admin.berita');
-Route::get('/admin/perangkat', function () {
-    return view('admin.perangkat');
-})->name('admin.perangkat');
-Route::get('/admin/potensi', function () {
-    return view('admin.potensi');
-})->name('admin.potensi');
+Route::get('/admin/perangkat', [PerangkatController::class, 'index'])->name('admin.perangkat');
+Route::get('/admin/perangkat/create', [PerangkatController::class, 'create'])->name('admin.perangkat.create');
+Route::post('/admin/perangkat', [PerangkatController::class, 'store'])->name('admin.perangkat.store');
+Route::get('/admin/perangkat/{id}/edit', [PerangkatController::class, 'edit'])->name('admin.perangkat.edit');
+Route::put('/admin/perangkat/{id}', [PerangkatController::class, 'update'])->name('admin.perangkat.update');
+Route::delete('/admin/perangkat/{id}', [PerangkatController::class, 'destroy'])->name('admin.perangkat.delete');
 Route::get('/admin/galeri', function () {
     return view('admin.galeri');
 })->name('admin.galeri');
