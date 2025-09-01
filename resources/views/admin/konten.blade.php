@@ -28,7 +28,7 @@
                 <div class="text-gray-600 text-center mb-2">Kelola potensi dan sumber daya kampung.</div>
                 <span class="bg-indigo-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-indigo-700 transition">Kelola</span>
             </a>
-            <a href="{{ route('admin.galeri') }}" class="bg-pink-50 hover:bg-pink-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="400">
+            <a href="{{ route('admin.galeri.index') }}" class="bg-pink-50 hover:bg-pink-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="400">
                 <span class="material-icons text-4xl text-pink-600 mb-2">photo_library</span>
                 <div class="font-bold text-lg mb-1">Galeri</div>
                 <div class="text-gray-600 text-center mb-2">Kelola foto dan dokumentasi kampung.</div>

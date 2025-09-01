@@ -22,14 +22,14 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'gambar' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'gambar' => 'required|image|mimes:jpg,jpeg,png,gif',
         ]);
         $data = [
             'judul' => $request->judul,
             'gambar' => $request->file('gambar')->store('galeri', 'public'),
         ];
         Galeri::create($data);
-        return redirect()->route('galeri.index')->with('success', 'Foto berhasil ditambahkan');
+        return redirect()->route('admin.galeri.index')->with('success', 'Foto berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -43,7 +43,7 @@ class GaleriController extends Controller
         $galeri = Galeri::findOrFail($id);
         $request->validate([
             'judul' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif',
         ]);
         $data = [
             'judul' => $request->judul,
@@ -52,13 +52,13 @@ class GaleriController extends Controller
             $data['gambar'] = $request->file('gambar')->store('galeri', 'public');
         }
         $galeri->update($data);
-        return redirect()->route('galeri.index')->with('success', 'Foto berhasil diupdate');
+        return redirect()->route('admin.galeri.index')->with('success', 'Foto berhasil diupdate');
     }
 
     public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);
         $galeri->delete();
-        return redirect()->route('galeri.index')->with('success', 'Foto berhasil dihapus');
+        return redirect()->route('admin.galeri.index')->with('success', 'Foto berhasil dihapus');
     }
 }

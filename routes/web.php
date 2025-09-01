@@ -1,10 +1,8 @@
+<?php
+
 use App\Http\Controllers\GaleriController;
 
-// ...existing code...
-
-Route::resource('admin/galeri', GaleriController::class);
-
-<?php
+Route::resource('galeri', GaleriController::class);
 
 use App\Models\Potensi;
 
@@ -13,6 +11,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\AspirasiController;
+use App\Http\Controllers\TentangController;
 use App\Models\Darurat;
 
 Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
@@ -53,7 +52,9 @@ Route::get('/perangkat', function () {
     $perangkats = Perangkat::all();
     return view('perangkat', compact('perangkats'));
 })->name('perangkat');
+
 use App\Models\Galeri;
+
 Route::get('/galeri', function () {
     $galeris = Galeri::all();
     return view('galeri', compact('galeris'));
@@ -90,12 +91,27 @@ Route::post('/admin/perangkat', [PerangkatController::class, 'store'])->name('ad
 Route::get('/admin/perangkat/{id}/edit', [PerangkatController::class, 'edit'])->name('admin.perangkat.edit');
 Route::put('/admin/perangkat/{id}', [PerangkatController::class, 'update'])->name('admin.perangkat.update');
 Route::delete('/admin/perangkat/{id}', [PerangkatController::class, 'destroy'])->name('admin.perangkat.delete');
-Route::get('/admin/galeri', function () {
-    return view('admin.galeri');
-})->name('admin.galeri');
+
+Route::resource('admin/galeri', GaleriController::class, [
+    'names' => [
+        'index' => 'admin.galeri.index',
+        'create' => 'admin.galeri.create',
+        'store' => 'admin.galeri.store',
+        'edit' => 'admin.galeri.edit',
+        'update' => 'admin.galeri.update',
+        'destroy' => 'admin.galeri.destroy',
+        'show' => 'admin.galeri.show',
+    ]
+]);
+
+use App\Models\Profil;
+
 Route::get('/admin/tentang', function () {
-    return view('admin.tentang');
+    $profil = Profil::first();
+    return view('admin.tentang', compact('profil'));
 })->name('admin.tentang');
+Route::get('/admin/tentang/edit', [TentangController::class, 'edit'])->name('admin.tentang.edit');
+Route::post('/admin/tentang/update', [TentangController::class, 'update'])->name('admin.tentang.update');
 
 Route::get('/pengaduan', [PengaduanController::class, 'create'])->name('pengaduan.create');
 Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
