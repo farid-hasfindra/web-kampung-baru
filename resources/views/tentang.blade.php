@@ -15,8 +15,8 @@ $tentang = Tentang::first();
     <div class="bg-white rounded-xl shadow-lg p-8 mb-8" data-aos="fade-up" data-aos-delay="100">
         <h2 class="text-2xl font-semibold mb-2 text-yellow-700">Lokasi Kampung (Maps)</h2>
         <div class="w-full h-64 rounded-lg overflow-hidden mb-2">
-            @if(!empty($tentang->maps_embed))
-            <iframe src="{{ $tentang->maps_embed }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            @if(!empty($tentang->maps_link))
+            <iframe src="https://www.google.com/maps?q={{ urlencode($tentang->maps_link) }}&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             @endif
         </div>
         <p class="text-gray-600">Alamat: {{ $tentang->alamat ?? '-' }}</p>
