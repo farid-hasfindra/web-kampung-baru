@@ -19,7 +19,7 @@ class TentangController extends Controller
             'nama_kampung' => 'required',
             'sejarah' => 'required',
             'alamat' => 'required',
-            'maps_embed' => 'nullable',
+            'maps_link' => 'nullable',
             'facebook' => 'nullable',
             'instagram' => 'nullable',
             'twitter' => 'nullable',

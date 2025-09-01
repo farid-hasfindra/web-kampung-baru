@@ -10,7 +10,7 @@ class Tentang extends Model
         'nama_kampung',
         'sejarah',
         'alamat',
-        'maps_embed',
+        'maps_link',
         'facebook',
         'instagram',
         'twitter',

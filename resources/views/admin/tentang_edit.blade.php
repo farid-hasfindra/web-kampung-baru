@@ -18,8 +18,8 @@
                 <input type="text" name="alamat" id="alamat" class="w-full border border-gray-300 rounded-lg px-4 py-2" value="{{ $tentang->alamat ?? '' }}" required>
             </div>
             <div class="mb-6">
-                <label for="maps_embed" class="block font-semibold mb-2">Embed Google Maps</label>
-                <input type="text" name="maps_embed" id="maps_embed" class="w-full border border-gray-300 rounded-lg px-4 py-2" value="{{ $tentang->maps_embed ?? '' }}">
+                <label for="maps_link" class="block font-semibold mb-2">Link Google Maps</label>
+                <input type="text" name="maps_link" id="maps_link" class="w-full border border-gray-300 rounded-lg px-4 py-2" value="{{ $tentang->maps_link ?? '' }}" placeholder="https://maps.google.com/...">
             </div>
             <div class="mb-6">
                 <label class="block font-semibold mb-2">Akun Sosial Media</label>
