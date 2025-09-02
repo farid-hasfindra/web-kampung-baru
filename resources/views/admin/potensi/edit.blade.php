@@ -1,9 +1,18 @@
-@extends('layouts.app')
+@extends('admin.layout')
 
 @section('content')
 
 <div class="max-w-xl mx-auto py-10 px-6 bg-white rounded-xl shadow-lg mt-8">
     <h2 class="text-2xl font-bold mb-6 text-center text-blue-700">Edit Potensi</h2>
+    @if ($errors->any())
+    <div class="mb-4 text-red-600">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form action="{{ route('potensi.update', $potensi->id) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
         @csrf
         @method('PUT')

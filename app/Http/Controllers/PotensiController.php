@@ -55,7 +55,7 @@ class PotensiController extends Controller
         $request->validate([
             'nama' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif',
         ]);
         $potensi = Potensi::findOrFail($id);
 

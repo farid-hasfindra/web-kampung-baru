@@ -1,7 +1,6 @@
 @extends('admin.layout')
 @section('content')
 <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-    <div class="max-w-5xl w-full mx-auto p-8 bg-white rounded-2xl shadow-2xl" data-aos="fade-up">
         <h1 class="text-3xl font-bold text-center mb-8 text-blue-700">Kelola Konten Website Kampung</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <a href="{{ route('admin.penduduk.index') }}" class="bg-green-50 hover:bg-green-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="600">
@@ -47,7 +46,6 @@
                 <span class="bg-gray-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-gray-700 transition">Kelola</span>
             </a>
         </div>
-    </div>
 </div>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

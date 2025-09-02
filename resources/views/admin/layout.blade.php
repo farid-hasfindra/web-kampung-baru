@@ -18,27 +18,25 @@
 <body class="bg-gray-50 min-h-screen">
     <div class="min-h-screen bg-gray-50 flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gray-900 text-white flex-shrink-0 flex flex-col">
-            <div class="px-6 py-6 font-bold text-xl border-b border-gray-800">Dash UI</div>
+        <aside class="w-64 bg-gray-900 text-white flex-shrink-0 flex flex-col" style="position: fixed; top: 0; left: 0; height: 100vh; z-index: 100;">
+            <div class="px-6 py-6 font-bold text-xl border-b border-gray-800">Menu Admin</div>
             <nav class="flex-1 px-4 py-6">
                 <ul class="space-y-2">
                     <li><a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 px-3 py-2 rounded {{ request()->routeIs('admin.dashboard') ? 'bg-gray-800 font-semibold' : 'hover:bg-gray-800' }}"><span class="material-icons">home</span> Dashboard</a></li>
                     <li><a href="{{ route('admin.konten') }}" class="flex items-center gap-2 px-3 py-2 rounded {{ request()->routeIs('admin.konten') ? 'bg-gray-800 font-semibold' : 'hover:bg-gray-800' }}"><span class="material-icons">layers</span> Kelola Konten</a></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-semibold transition">
-                                <span class="material-icons">logout</span> Logout
-                            </button>
-                        </form>
-                    </li>
                 </ul>
             </nav>
             <!-- Logout button moved to sidebar above -->
+            <form method="POST" action="{{ route('logout') }}" class="px-6 py-4 border-t border-gray-800 mt-auto">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-semibold transition">
+                    <span class="material-icons">logout</span> Logout
+                </button>
+            </form>
             <div class="px-6 pt-2 pb-2 text-sm text-gray-400">&copy; 2025 Kampung Admin</div>
         </aside>
         <!-- Main -->
-        <main class="flex-1">
+        <main class="flex-1 p-8 ml-64">
             @yield('content')
         </main>
     </div>

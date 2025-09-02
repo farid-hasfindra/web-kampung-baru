@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-<div class="max-w-3xl mx-auto py-10 px-4">
+<div class="w-full py-10 px-8">
     <h1 class="text-3xl font-bold mb-8 text-pink-600 text-center" data-aos="fade-down">Kelola Galeri Kampung</h1>
     <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-up">
         <div class="flex justify-between items-center mb-6">
