@@ -7,6 +7,11 @@ use App\Models\Galeri;
 
 class GaleriController extends Controller
 {
+    public function show($id)
+    {
+        $galeri = Galeri::findOrFail($id);
+        return view('galeri_detail', compact('galeri'));
+    }
     public function index()
     {
         $galeris = Galeri::all();

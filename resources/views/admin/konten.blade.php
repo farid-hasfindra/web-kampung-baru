@@ -4,6 +4,12 @@
     <div class="max-w-5xl w-full mx-auto p-8 bg-white rounded-2xl shadow-2xl" data-aos="fade-up">
         <h1 class="text-3xl font-bold text-center mb-8 text-blue-700">Kelola Konten Website Kampung</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="{{ route('admin.penduduk.index') }}" class="bg-green-50 hover:bg-green-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="600">
+                <span class="material-icons text-4xl text-green-700 mb-2">people</span>
+                <div class="font-bold text-lg mb-1">Data Penduduk</div>
+                <div class="text-gray-600 text-center mb-2">Kelola data penduduk kampung.</div>
+                <span class="bg-green-700 text-white px-4 py-2 rounded font-semibold shadow hover:bg-green-800 transition">Kelola</span>
+            </a>
             <a href="{{ route('admin.layanan') }}" class="bg-blue-50 hover:bg-blue-100 rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up">
                 <span class="material-icons text-4xl text-blue-600 mb-2">support_agent</span>
                 <div class="font-bold text-lg mb-1">Layanan Kampung</div>

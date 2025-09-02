@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PotensiController extends Controller
 {
+    public function show($id)
+    {
+        $potensi = Potensi::findOrFail($id);
+        return view('potensi_detail', compact('potensi'));
+    }
     public function index()
     {
         $potensis = Potensi::all();

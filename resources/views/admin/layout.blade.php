@@ -24,19 +24,17 @@
                 <ul class="space-y-2">
                     <li><a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 px-3 py-2 rounded {{ request()->routeIs('admin.dashboard') ? 'bg-gray-800 font-semibold' : 'hover:bg-gray-800' }}"><span class="material-icons">home</span> Dashboard</a></li>
                     <li><a href="{{ route('admin.konten') }}" class="flex items-center gap-2 px-3 py-2 rounded {{ request()->routeIs('admin.konten') ? 'bg-gray-800 font-semibold' : 'hover:bg-gray-800' }}"><span class="material-icons">layers</span> Kelola Konten</a></li>
-                    <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">lock</span> Authentication</a></li>
-                    <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">dashboard_customize</span> Layouts</a></li>
-                    <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">widgets</span> Components</a></li>
-                    <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">menu</span> Menu Level</a></li>
-                    <li><a href="#" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-800"><span class="material-icons">description</span> Docs</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-semibold transition">
+                                <span class="material-icons">logout</span> Logout
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
-            <form method="POST" action="{{ route('logout') }}" class="px-6 py-4 border-t border-gray-800">
-                @csrf
-                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-semibold transition">
-                    <span class="material-icons">logout</span> Logout
-                </button>
-            </form>
+            <!-- Logout button moved to sidebar above -->
             <div class="px-6 pt-2 pb-2 text-sm text-gray-400">&copy; 2025 Kampung Admin</div>
         </aside>
         <!-- Main -->

@@ -1,11 +1,9 @@
 <?php
 
+use App\Http\Controllers\KepalaKeluargaController;
 use App\Http\Controllers\GaleriController;
-
-Route::resource('galeri', GaleriController::class);
-
+use App\Http\Controllers\PendudukController;
 use App\Models\Potensi;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\PotensiController;
@@ -13,6 +11,28 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\AspirasiController;
 use App\Http\Controllers\TentangController;
 use App\Models\Darurat;
+use App\Models\Galeri;
+
+Route::resource('galeri', GaleriController::class);
+
+Route::get('/galeri', function () {
+$galeris = Galeri::all();
+return view('galeri', compact('galeris'));
+})->name('galeri');
+
+// Kelola jumlah kepala keluarga
+Route::prefix('admin')->group(function () {
+    Route::get('/kepala-keluarga', [KepalaKeluargaController::class, 'index'])->name('admin.kepala_keluarga.index');
+    Route::get('/kepala-keluarga/edit', [KepalaKeluargaController::class, 'edit'])->name('admin.kepala_keluarga.edit');
+    Route::post('/kepala-keluarga/update', [KepalaKeluargaController::class, 'update'])->name('admin.kepala_keluarga.update');
+});
+
+// Kelola jumlah penduduk
+Route::prefix('admin')->group(function () {
+    Route::get('/penduduk', [PendudukController::class, 'index'])->name('admin.penduduk.index');
+    Route::get('/penduduk/edit', [PendudukController::class, 'edit'])->name('admin.penduduk.edit');
+    Route::post('/penduduk/update', [PendudukController::class, 'update'])->name('admin.penduduk.update');
+});
 
 Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
@@ -25,7 +45,12 @@ Route::get('/potensi/{id}', function ($id) {
 
 Route::resource('admin/potensi', PotensiController::class);
 Route::get('/', function () {
-    return view('welcome');
+    $beritas = \App\Models\Berita::orderBy('tanggal', 'desc')->get();
+    $potensis = Potensi::all();
+    $galeris = \App\Models\Galeri::all();
+    $penduduk = \App\Models\Penduduk::orderByDesc('tahun')->first();
+    $kepala_keluarga = \App\Models\KepalaKeluarga::orderByDesc('tahun')->first();
+    return view('welcome', compact('beritas', 'potensis', 'galeris', 'penduduk', 'kepala_keluarga'));
 })->name('beranda');
 
 use App\Models\Berita;
@@ -53,12 +78,6 @@ Route::get('/perangkat', function () {
     return view('perangkat', compact('perangkats'));
 })->name('perangkat');
 
-use App\Models\Galeri;
-
-Route::get('/galeri', function () {
-    $galeris = Galeri::all();
-    return view('galeri', compact('galeris'));
-})->name('galeri');
 // Route detail perangkat dari database
 Route::get('/perangkat/{id}', function ($id) {
     $perangkat = Perangkat::find($id);
