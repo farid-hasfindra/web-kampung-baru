@@ -50,13 +50,13 @@
     <!-- Informasi Berita Terbaru -->
     <section class="w-full py-16 relative" id="berita" style="background: linear-gradient(135deg, #cfe2ff 0%, #e3f0ff 100%);">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Berita Terbaru</h2>
+            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Berita Kampung</h2>
             <div class="grid md:grid-cols-3 gap-8 relative z-10">
                 @foreach($beritas as $berita)
                 <a href="{{ route('berita.detail', $berita->id) }}" class="block bg-blue-50 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl border border-blue-100" data-aos="zoom-in" data-aos-delay="100">
                     <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-48 object-cover">
                     <div class="p-4">
-                        <h3 class="font-bold text-xl mb-2 text-blue-700">{{ $berita->judul }}</h3>
+                        <h3 class="font-bold text-xl mb-2 text-black-700">{{ $berita->judul }}</h3>
                         <p class="text-gray-500 text-sm mb-2">{{ $berita->created_at->format('d M Y') }}</p>
                         <p class="text-gray-700 mb-2">{{ Str::limit($berita->isi, 100) }}</p>
                         <span class="text-blue-600 font-semibold mt-2 inline-block hover:underline">Baca Selengkapnya</span>
@@ -114,8 +114,8 @@
                         <p class="text-gray-600 text-sm mb-2">{{ $potensi->created_at->format('d M Y') }}</p>
                         <p class="text-gray-700">{{ Str::limit($potensi->isi, 100) }}</p>
                     </div>
-                    <h3 class="font-bold text-xl mb-2 text-green-700">{{ $potensi->nama }}</h3>
-                    <p class="text-gray-700">{{ Str::limit($potensi->deskripsi, 120) }}</p>
+                    <h3 class="font-bold text-xl mb-2 text-black-700">{{ $potensi->nama }}</h3>
+                    <span class="text-blue-600 font-semibold mt-2 inline-block hover:underline">Baca Selengkapnya</span>
                 </a>
                 @endforeach
             </div>
@@ -128,8 +128,9 @@
             <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Galeri Kampung</h2>
             <div class="grid md:grid-cols-4 gap-6">
                 @foreach($galeris as $galeri)
-                <a href="{{ route('galeri.show', $galeri->id) }}" class="block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-aos="zoom-in-up" data-aos-delay="200">
+                <a href="{{ route('galeri.show', $galeri->id) }}" class="p-8 block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-aos="zoom-in-up" data-aos-delay="200">
                     <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-40 object-cover">
+                    <h2 class="text-lg font-bold text-blue-700 mb-1 pt-2">{{ $galeri->judul }}</h2>
                 </a>
                 @endforeach
             </div>

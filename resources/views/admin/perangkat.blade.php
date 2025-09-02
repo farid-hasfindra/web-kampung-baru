@@ -12,15 +12,18 @@
                 <thead>
                     <tr class="text-gray-600 border-b">
                         <th class="py-2">Nama</th>
+                        <th class="py-2">Tempat & Tanggal Lahir</th>
                         <th class="py-2">Jabatan</th>
-                        <th class="py-2">Aksi</th>
+                        <th class="py-2">Hobi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($perangkats as $perangkat)
                     <tr class="border-b hover:bg-green-50">
                         <td class="py-2">{{ $perangkat->nama }}</td>
+                        <td class="py-2">{{ $perangkat->tempat_tanggal_lahir }}</td>
                         <td class="py-2">{{ $perangkat->jabatan }}</td>
+                        <td class="py-2">{{ $perangkat->hobi }}</td>
                         <td class="py-2 flex gap-2">
                             <a href="{{ route('admin.perangkat.edit', $perangkat->id) }}" class="bg-blue-500 text-white px-2 py-1 rounded text-xs hover:bg-blue-600 transition">Edit</a>
                             <form action="{{ route('admin.perangkat.delete', $perangkat->id) }}" method="POST" style="display:inline;">
@@ -32,7 +35,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center text-gray-500">Belum ada perangkat.</td>
+                        <td colspan="5" class="text-center text-gray-500">Belum ada perangkat.</td>
                     </tr>
                     @endforelse
                 </tbody>

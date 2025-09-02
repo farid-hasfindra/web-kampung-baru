@@ -23,15 +23,13 @@ class PerangkatController extends Controller
         $request->validate([
             'nama' => 'required',
             'jabatan' => 'required',
-            'mulai_kerja' => 'required|date',
-            'gambar' => 'nullable', // Bisa berupa file upload atau string
-            'deskripsi' => 'nullable',
-            'facebook' => 'nullable',
-            'instagram' => 'nullable',
-            'twitter' => 'nullable',
-            'linkedin' => 'nullable',
+            'gambar' => 'nullable',
+            'tempat_tanggal_lahir' => 'required',
+            'histori_pendidikan' => 'nullable',
+            'hobi' => 'nullable',
+            'akun_sosmed' => 'nullable',
         ]);
-        $data = $request->only(['nama', 'jabatan', 'mulai_kerja', 'deskripsi', 'facebook', 'instagram', 'twitter', 'linkedin']);
+        $data = $request->only(['nama', 'jabatan', 'gambar', 'tempat_tanggal_lahir', 'histori_pendidikan', 'hobi', 'akun_sosmed']);
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar')->store('perangkat', 'public');
             $data['gambar'] = $gambar;
@@ -53,16 +51,20 @@ class PerangkatController extends Controller
         $request->validate([
             'nama' => 'required',
             'jabatan' => 'required',
-            'mulai_kerja' => 'required|date',
-            'gambar' => 'nullable|string', // Bisa berupa URL atau path file
-            'deskripsi' => 'nullable',
-            'facebook' => 'nullable',
-            'instagram' => 'nullable',
-            'twitter' => 'nullable',
-            'linkedin' => 'nullable',
+            'gambar' => 'nullable',
+            'tempat_tanggal_lahir' => 'required',
+            'histori_pendidikan' => 'nullable',
+            'hobi' => 'nullable',
+            'akun_sosmed' => 'nullable',
         ]);
         $perangkat = Perangkat::findOrFail($id);
-        $data = $request->only(['nama', 'jabatan', 'mulai_kerja', 'gambar', 'deskripsi', 'facebook', 'instagram', 'twitter', 'linkedin']);
+        $data = $request->only(['nama', 'jabatan', 'gambar', 'tempat_tanggal_lahir', 'histori_pendidikan', 'hobi', 'akun_sosmed']);
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar')->store('perangkat', 'public');
+            $data['gambar'] = $gambar;
+        } elseif ($request->filled('gambar')) {
+            $data['gambar'] = $request->input('gambar');
+        }
         $perangkat->update($data);
         return redirect()->route('admin.perangkat')->with('success', 'Perangkat berhasil diupdate');
     }

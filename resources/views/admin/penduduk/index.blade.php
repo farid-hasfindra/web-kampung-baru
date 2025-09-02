@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="py-8 px-4">
-    <h1 class="text-3xl font-bold mb-8 text-blue-700">Kelola Administrasi Penduduk</h1>
+    <h1 class="text-3xl font-bold mb-8 text-blue-700 text-center">Kelola Administrasi Penduduk</h1>
     @if(session('success'))
     <div class="bg-green-100 text-green-800 p-2 rounded mb-6 text-center">{{ session('success') }}</div>
     @endif

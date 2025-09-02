@@ -16,8 +16,8 @@ use App\Models\Galeri;
 Route::resource('galeri', GaleriController::class);
 
 Route::get('/galeri', function () {
-$galeris = Galeri::all();
-return view('galeri', compact('galeris'));
+    $galeris = Galeri::all();
+    return view('galeri', compact('galeris'));
 })->name('galeri');
 
 // Kelola jumlah kepala keluarga
@@ -88,12 +88,9 @@ Route::get('/tentang', function () {
     return view('tentang');
 })->name('tentang');
 
-Route::get('/admin/dashboard', function () {
-    if (!session('admin_logged_in')) {
-        return redirect()->route('login');
-    }
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+use App\Http\Controllers\AdminDashboardController;
+
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/admin/kelola-konten', function () {
     return view('admin.konten');

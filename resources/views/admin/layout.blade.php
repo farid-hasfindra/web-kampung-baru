@@ -33,7 +33,7 @@
                     <span class="material-icons">logout</span> Logout
                 </button>
             </form>
-            <div class="px-6 pt-2 pb-2 text-sm text-gray-400">&copy; 2025 Kampung Admin</div>
+            <div class="px-6 pt-2 pb-2 text-sm text-gray-400">&copy; Admin Website Kampung</div>
         </aside>
         <!-- Main -->
         <main class="flex-1 p-8 ml-64">

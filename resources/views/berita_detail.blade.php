@@ -7,7 +7,7 @@
             <h1 class="text-3xl font-bold mb-2 text-blue-700">{{ $berita->judul }}</h1>
             <span class="text-sm text-gray-400 mb-4 block">{{ \Carbon\Carbon::parse($berita->tanggal)->translatedFormat('d F Y') }}</span>
             <p class="text-lg text-gray-700 mb-6">{{ $berita->isi }}</p>
-            <a href="{{ route('berita') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-blue-700 transition">Kembali ke Berita</a>
+            <a href="{{ route('berita') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-blue-700 transition">Kembali</a>
         </div>
     </div>
 </div>

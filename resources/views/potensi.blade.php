@@ -8,7 +8,6 @@
             <img src="{{ $potensi->gambar ? asset('storage/' . $potensi->gambar) : 'https://via.placeholder.com/400x160?text=No+Image' }}" alt="{{ $potensi->nama }}" class="w-full h-40 object-cover">
             <div class="p-6">
                 <h2 class="text-lg font-bold text-blue-700 mb-2">{{ $potensi->nama }}</h2>
-                <p class="text-gray-600">{{ $potensi->deskripsi }}</p>
             </div>
         </a>
         @empty
