@@ -18,10 +18,6 @@
                 <input type="text" name="alamat" id="alamat" class="w-full border border-gray-300 rounded-lg px-4 py-2" value="{{ $tentang->alamat ?? '' }}" required>
             </div>
             <div class="mb-6">
-                <label for="maps_link" class="block font-semibold mb-2">Link Google Maps</label>
-                <input type="text" name="maps_link" id="maps_link" class="w-full border border-gray-300 rounded-lg px-4 py-2" value="{{ $tentang->maps_link ?? '' }}" placeholder="https://maps.google.com/...">
-            </div>
-            <div class="mb-6">
                 <label class="block font-semibold mb-2">Akun Sosial Media</label>
                 <input type="text" name="facebook" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Facebook" value="{{ $tentang->facebook ?? '' }}">
                 <input type="text" name="instagram" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Instagram" value="{{ $tentang->instagram ?? '' }}">

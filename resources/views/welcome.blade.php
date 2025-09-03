@@ -15,22 +15,22 @@
 
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="fixed w-full top-0 left-0 z-20 py-6 flex items-center justify-around">
+    <nav id="main-navbar" class="fixed w-full top-0 left-0 z-20 py-6 flex items-center justify-around transition-all duration-500 ease-in-out" style="background: transparent;">
         <div class="flex items-center gap-3">
-            <img src="{{ asset('images/logo/logo-siak.png') }}" alt="Logo" class="h-12 w-12 object-contain" style="max-width:3rem; max-height:3rem;">
+            <img src="{{ asset('images/logo/logo-siak.png') }}" alt="Logo" class="h-12 w-12 object-contain shadow-lg" style="max-width:3rem; max-height:3rem;">
             <div>
                 <span class="font-bold text-lg text-white block leading-tight">Kampung Tualang Timur</span>
                 <span class="text-xs text-gray-200">Kabupaten Siak</span>
             </div>
         </div>
-        <ul class="hidden md:flex gap-6 text-base font-semibold text-white">
-            <li><a href="#" class="hover:text-blue-300 transition-colors duration-300 relative group">Beranda</a></li>
-            <li><a href="{{ route('layanan') }}" class="hover:text-blue-300 transition-colors duration-300 relative group">Layanan Kampung</a></li>
-            <li><a href="{{ route('berita') }}" class="hover:text-blue-300 transition-colors duration-300 relative group">Berita</a></li>
-            <li><a href="{{ route('perangkat') }}" class="hover:text-blue-300 transition-colors duration-300 relative group">Perangkat Kampung</a></li>
-            <li><a href="{{ route('potensi') }}" class="hover:text-blue-300 transition-colors duration-300 relative group">Potensi Kampung</a></li>
-            <li><a href="{{ route('galeri') }}" class="hover:text-blue-300 transition-colors duration-300 relative group">Galeri</a></li>
-            <li><a href="{{ route('tentang') }}" class="hover:text-blue-300 transition-colors duration-300 relative group">Tentang Kampung</a></li>
+        <ul class="hidden md:flex gap-6 text-lg text-white drop-shadow-lg">
+            <li><a href="{{ route('beranda') }}" class="nav-anim">Beranda</a></li>
+            <li><a href="{{ route('layanan') }}" class="nav-anim">Layanan Kampung</a></li>
+            <li><a href="{{ route('berita') }}" class="nav-anim">Berita</a></li>
+            <li><a href="{{ route('perangkat') }}" class="nav-anim">Perangkat Kampung</a></li>
+            <li><a href="{{ route('potensi') }}" class="nav-anim">Potensi Kampung</a></li>
+            <li><a href="{{ route('galeri') }}" class="nav-anim">Galeri</a></li>
+            <li><a href="{{ route('tentang') }}" class="nav-anim">Tentang Kampung</a></li>
         </ul>
     </nav>
     <!-- Hero Section -->
@@ -130,7 +130,7 @@
                 @foreach($galeris as $galeri)
                 <a href="{{ route('galeri.show', $galeri->id) }}" class="p-8 block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-aos="zoom-in-up" data-aos-delay="200">
                     <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-40 object-cover">
-                    <h2 class="text-lg font-bold text-blue-700 mb-1 pt-2">{{ $galeri->judul }}</h2>
+                    <h2 class="text-lg font-bold text-black mb-1 pt-2">{{ $galeri->judul }}</h2>
                 </a>
                 @endforeach
             </div>
@@ -140,6 +140,21 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+        // Navbar background change on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            var navbar = document.getElementById('main-navbar');
+            var beritaSection = document.getElementById('berita');
+            var changePoint = beritaSection ? beritaSection.offsetTop - 80 : 200;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > changePoint) {
+                    navbar.style.background = '#065f46'; // Hijau tua (Tailwind green-800)
+                    navbar.style.boxShadow = '0 4px 16px rgba(0,0,0,0.18)';
+                } else {
+                    navbar.style.background = 'transparent';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+        });
     </script>
     <main class="flex-1">
         @yield('content')
@@ -176,9 +191,37 @@
                 box-shadow: 0 8px 24px rgba(22, 163, 74, 0.18);
                 background: #8B0000;
             }
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .nav-anim {
+                position: relative;
+                transition: color 0.3s;
+                padding-bottom: 4px;
+            }
+
+            .nav-anim::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                background: #38bdf8;
+                transition: width 0.3s cubic-bezier(.4, 0, .2, 1);
+                border-radius: 2px;
+            }
+
+            .nav-anim:hover {
+                color: #38bdf8;
+            }
+
+            .nav-anim:hover::after {
+                width: 100%;
+            }
         </style>
         @endif
-    </main>
-</body>
 
 </html>

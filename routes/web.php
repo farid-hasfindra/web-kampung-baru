@@ -38,6 +38,14 @@ Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login
 Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
+// Fitur ubah username & password
+Route::get('/admin/account/edit', [AdminAuthController::class, 'editAccount'])->name('admin.account.edit');
+Route::post('/admin/account/update', [AdminAuthController::class, 'updateAccount'])->name('admin.account.update');
+
+// Fitur lupa password
+Route::get('/admin/account/forgot', [AdminAuthController::class, 'forgotPasswordForm'])->name('admin.account.forgot');
+Route::post('/admin/account/forgot', [AdminAuthController::class, 'forgotPassword'])->name('admin.account.forgot.submit');
+
 Route::get('/potensi/{id}', function ($id) {
     $potensi = Potensi::findOrFail($id);
     return view('potensi_detail', compact('potensi'));

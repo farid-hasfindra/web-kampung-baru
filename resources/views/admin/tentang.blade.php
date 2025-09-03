@@ -7,9 +7,6 @@
             <span class="font-bold text-lg">Profil Kampung</span>
             <a href="{{ route('admin.tentang.edit') }}" class="bg-gray-600 text-white px-4 py-2 rounded font-semibold shadow hover:bg-gray-700 transition">Edit Profil</a>
         </div>
-        <div class="mb-4">
-            <div class="text-gray-700">{{ $profil->isi ?? 'Belum ada profil kampung.' }}</div>
-        </div>
     </div>
 </div>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

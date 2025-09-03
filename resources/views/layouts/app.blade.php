@@ -6,6 +6,32 @@
         body {
             font-family: 'Montserrat', sans-serif;
         }
+
+        .nav-anim {
+            position: relative;
+            transition: color 0.3s;
+            padding-bottom: 4px;
+        }
+
+        .nav-anim::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #38bdf8;
+            transition: width 0.3s cubic-bezier(.4, 0, .2, 1);
+            border-radius: 2px;
+        }
+
+        .nav-anim:hover {
+            color: #38bdf8;
+        }
+
+        .nav-anim:hover::after {
+            width: 100%;
+        }
     </style>
     <!-- Footer -->
     {{-- <footer class="bg-blue-600 text-white py-6 mt-10">
@@ -40,44 +66,23 @@
 
 <body class="bg-white text-gray-900 min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm py-6 px-4 flex items-center justify-around">
+    <nav class="bg-green-800 shadow-sm py-6 px-4 flex items-center justify-around">
         <div class="flex items-center gap-3">
             <img src="{{ asset('images/logo/logo-siak.png') }}" alt="Logo" class="h-12 w-12 object-contain"
                 style="max-width:3rem; max-height:3rem;">
             <div>
-                <span class="font-bold text-lg text-gray-800 block leading-tight">Kampung Tualang Timur</span>
-                <span class="text-xs text-gray-500">Kabupaten Siak</span>
+                <span class="font-bold text-lg text-white block leading-tight">Kampung Tualang Timur</span>
+                <span class="text-xs text-gray-200">Kabupaten Siak</span>
             </div>
         </div>
-        <ul class="hidden md:flex gap-6 text-base font-semibold text-gray-700">
-            <li><a href="{{ route('beranda') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Beranda
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
-            <li><a href="{{ route('layanan') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Layanan Kampung
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
-            <li><a href="{{ route('berita') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Berita
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
-            <li><a href="{{ route('perangkat') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Perangkat Kampung
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
-            <li><a href="{{ route('potensi') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Potensi Kampung
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
-            <li><a href="{{ route('galeri') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Galeri
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
-            <li><a href="{{ route('tentang') }}" class="hover:text-blue-600 transition-colors duration-300 relative group">
-                    Tentang Kampung
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                </a></li>
+        <ul class="hidden md:flex gap-6 text-lg text-white">
+            <li><a href="{{ route('beranda') }}" class="nav-anim">Beranda</a></li>
+            <li><a href="{{ route('layanan') }}" class="nav-anim">Layanan Kampung</a></li>
+            <li><a href="{{ route('berita') }}" class="nav-anim">Berita</a></li>
+            <li><a href="{{ route('perangkat') }}" class="nav-anim">Perangkat Kampung</a></li>
+            <li><a href="{{ route('potensi') }}" class="nav-anim">Potensi Kampung</a></li>
+            <li><a href="{{ route('galeri') }}" class="nav-anim">Galeri</a></li>
+            <li><a href="{{ route('tentang') }}" class="nav-anim">Tentang Kampung</a></li>
         </ul>
     </nav>
     <main class="flex-1">
