@@ -6,10 +6,6 @@
         @forelse($galeris as $galeri)
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
             <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-48 object-cover">
-            <div class="p-4">
-                <h2 class="text-lg font-bold text-blue-700 mb-1">{{ $galeri->judul }}</h2>
-                <p class="text-gray-600 text-sm">{{ $galeri->deskripsi }}</p>
-            </div>
         </div>
         @empty
         <div class="col-span-4 text-center text-gray-500 py-10">Belum ada data galeri.</div>

@@ -7,7 +7,7 @@
                 <div class="flex items-center justify-center overflow-hidden rounded-xl mb-4 bg-white border-2" style="width:180px;height:240px;">
                     <img src="/images/kepala-desa.jpg" alt="Kepala Desa" class="rounded-xl shadow-lg transition-transform duration-300 hover:scale-105" style="width:180px;height:260px;object-fit:cover;object-position:0px -20px;" />
                 </div>
-                <h2 class="font-extrabold text-base text-green-700 text-lg text-center mb-1">Ajarnalis</h2>
+                <h2 class="font-extrabold text-gray-900 text-lg text-center mb-1">Ajarnalis, SE</h2>
                 <p class="font-semibold text-gray-700 text-center text-sm tracking-wide">Penghulu</p>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <a href="{{ route('perangkat.detail', ['id' => $perangkat->id]) }}" class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer animate__animated animate__fadeInUp" data-aos="fade-up">
                     <img src="{{ asset('storage/' . $perangkat->gambar) ?? 'https://via.placeholder.com/150' }}" alt="{{ $perangkat->nama }}" class="w-32 h-32 rounded-lg mb-4 object-cover shadow-lg transition-transform duration-300 hover:scale-105" data-aos="zoom-in">
                     <div class="text-center w-full">
-                        <h2 class="text-lg font-bold text-gray-900 mb-1">{{ $perangkat->nama }}</h2>
+                        <h2 class="text-md font-bold text-gray-900 mb-1">{{ $perangkat->nama }}</h2>
                         <div class="text-sm text-gray-700 font-semibold mb-1">{{ $perangkat->jabatan }}</div>
                     </div>
                 </a>

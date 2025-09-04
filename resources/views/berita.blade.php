@@ -3,7 +3,7 @@
 @php use Illuminate\Support\Str; @endphp
 @php use Carbon\Carbon; @endphp
 <div class="max-w-5xl mx-auto py-10 px-4">
-    <h1 class="text-4xl font-bold mb-6 text-gray-900 text-center">Berita Desa</h1>
+    <h1 class="text-4xl font-bold mb-6 text-gray-900 text-center">Berita Kampung</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse($beritas as $berita)
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer" onclick="window.location='{{ route('berita.detail', ['id' => $berita->id]) }}'" data-aos="fade-up">

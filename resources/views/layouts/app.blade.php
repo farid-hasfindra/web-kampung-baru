@@ -37,8 +37,8 @@
     {{-- <footer class="bg-blue-600 text-white py-6 mt-10">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center px-4">
             <div class="mb-2 md:mb-0">
-                <span class="font-bold text-lg">Desa Sei Lala</span> <br>
-                <span class="text-sm">Kabupaten Indragiri Hulu, Riau</span>
+                <span class="font-bold text-lg">Kampung Tualang Timur</span> <br>
+                <span class="text-sm">Kabupaten Siak, Provinsi Riau</span>
             </div>
             <div class="flex gap-4">
                 <a href="{{ route('beranda') }}" class="hover:text-blue-200 transition">Beranda</a>
@@ -54,7 +54,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Desa Sei Lala</title>
+        <title>Kampung Tualang Timur</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
         <style>
