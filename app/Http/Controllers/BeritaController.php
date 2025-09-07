@@ -20,6 +20,7 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'judul' => 'required',
             'tanggal' => 'required|date',

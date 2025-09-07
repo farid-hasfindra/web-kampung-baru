@@ -6,10 +6,6 @@
     <form action="{{ route('admin.galeri.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
         @csrf
         <div>
-            <label for="judul" class="block font-semibold mb-2">Judul Foto</label>
-            <input type="text" name="judul" class="w-full border rounded px-4 py-2 focus:outline-pink-500" required>
-        </div>
-        <div>
             <label for="gambar" class="block font-semibold mb-2">Gambar</label>
             <input type="file" name="gambar" class="w-full border rounded px-4 py-2 focus:outline-pink-500" accept="image/*" required>
         </div>

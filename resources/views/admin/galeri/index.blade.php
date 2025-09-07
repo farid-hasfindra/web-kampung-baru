@@ -12,7 +12,6 @@
             @forelse($galeris as $galeri)
             <div class="bg-gray-50 rounded-lg shadow p-4 flex flex-col items-center">
                 <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}" class="h-40 w-full object-cover rounded mb-2">
-                <div class="font-bold mb-2">{{ $galeri->judul }}</div>
                 <div class="flex gap-2">
                     <a href="{{ route('admin.galeri.edit', $galeri->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded shadow hover:bg-blue-600 transition text-sm">Edit</a>
                     <form action="{{ route('admin.galeri.destroy', $galeri->id) }}" method="POST" class="inline">

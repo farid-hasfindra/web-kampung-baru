@@ -7,12 +7,12 @@
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2 font-semibold" for="username">Username</label>
-                <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="admin" required>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="Masukkan Username" required>
             </div>
             <div class="mb-6">
                 <label class="block text-gray-700 mb-2 font-semibold" for="password">Password</label>
                 <div class="relative">
-                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition pr-10" placeholder="********" required>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition pr-10" placeholder="Masukkan Password" required>
                     <button type="button" onclick="togglePassword()" class="absolute right-2 top-2 text-gray-500 focus:outline-none" tabindex="-1">
                         <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -28,7 +28,7 @@
         </form>
         <div class="mt-6 flex flex-col gap-2 items-center">
             <a href="{{ route('admin.account.edit') }}" class="text-blue-600 hover:underline font-semibold">Ubah Username & Password</a>
-            <div class="text-center text-gray-500 text-sm mt-2">Hanya untuk admin kampung</div>
+            <div class="text-center text-gray-500 text-sm mt-2">Admin Website Kampung</div>
         </div>
     </div>
 </div>

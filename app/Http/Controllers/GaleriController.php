@@ -26,11 +26,9 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
             'gambar' => 'required|image|mimes:jpg,jpeg,png,gif',
         ]);
         $data = [
-            'judul' => $request->judul,
             'gambar' => $request->file('gambar')->store('galeri', 'public'),
         ];
         Galeri::create($data);
@@ -47,12 +45,9 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::findOrFail($id);
         $request->validate([
-            'judul' => 'required',
+          
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif',
         ]);
-        $data = [
-            'judul' => $request->judul,
-        ];
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('galeri', 'public');
         }

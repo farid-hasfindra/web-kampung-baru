@@ -75,6 +75,12 @@
                 <span class="text-xs text-gray-200">Kabupaten Siak</span>
             </div>
         </div>
+        <!-- Hamburger menu for mobile -->
+        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
         <ul class="hidden md:flex gap-6 text-lg text-white">
             <li><a href="{{ route('beranda') }}" class="nav-anim">Beranda</a></li>
             <li><a href="{{ route('layanan') }}" class="nav-anim">Layanan Kampung</a></li>
@@ -84,6 +90,17 @@
             <li><a href="{{ route('galeri') }}" class="nav-anim">Galeri</a></li>
             <li><a href="{{ route('tentang') }}" class="nav-anim">Tentang Kampung</a></li>
         </ul>
+        <!-- Mobile menu dropdown -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 flex flex-col items-center justify-center text-white text-xl gap-8 hidden md:hidden">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+            <a href="{{ route('beranda') }}" class="nav-anim">Beranda</a>
+            <a href="{{ route('layanan') }}" class="nav-anim">Layanan Kampung</a>
+            <a href="{{ route('berita') }}" class="nav-anim">Berita</a>
+            <a href="{{ route('perangkat') }}" class="nav-anim">Perangkat Kampung</a>
+            <a href="{{ route('potensi') }}" class="nav-anim">Potensi Kampung</a>
+            <a href="{{ route('galeri') }}" class="nav-anim">Galeri</a>
+            <a href="{{ route('tentang') }}" class="nav-anim">Tentang Kampung</a>
+        </div>
     </nav>
     <main class="flex-1">
         @yield('content')
@@ -122,6 +139,28 @@
             }
         </style>
         @endif
+        <script>
+            // Mobile menu toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                var mobileMenu = document.getElementById('mobile-menu');
+                var closeMobileMenu = document.getElementById('close-mobile-menu');
+                if (mobileMenuBtn && mobileMenu && closeMobileMenu) {
+                    mobileMenuBtn.addEventListener('click', function() {
+                        mobileMenu.classList.remove('hidden');
+                    });
+                    closeMobileMenu.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                    // Hide menu when clicking outside
+                    mobileMenu.addEventListener('click', function(e) {
+                        if (e.target === mobileMenu) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+        </script>
     </main>
     <!-- Footer -->
     {{-- <footer class="bg-blue-600 text-white py-6 mt-10">

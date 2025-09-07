@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
+
+
 
 class AdminAuthController extends Controller
 {
@@ -13,56 +18,72 @@ class AdminAuthController extends Controller
         return view('login');
     }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+ public function authenticateLogin(Request $request) {
+        $credentials = $request->only('name', 'password');
 
-        $admin = Admin::where('username', $request->username)->first();
-
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            // Simpan session login admin
-            session(['admin_logged_in' => true]);
+        if(Auth::attempt($credentials)) {
             return redirect()->route('admin.dashboard');
+        } else {
+            $user = User::where('name', $request->name)->first();
+
+            if (!$user) {
+                return back()->withErrors([
+                    'name' => 'name tidak ditemukan.'
+                ]);
+            } else {
+                return back()->withErrors([
+                    'password' => 'Password salah.'
+                ]);
+            }
         }
-
-        return back()->withErrors(['username' => 'Username atau password salah']);
     }
 
-    public function logout()
-    {
-        session()->forget('admin_logged_in');
-        return redirect()->route('login');
+
+    public function logout() {
+        Session::flush();
+        Auth::logout();
+
+        return redirect('login');
     }
+
 
     // Form ubah username & password
     public function editAccount()
     {
-        $admin = Admin::first();
+        $admin = User::first();
         return view('admin.account_edit', compact('admin'));
     }
 
     // Proses ubah username & password
     public function updateAccount(Request $request)
     {
-        $request->validate([
-            'old_username' => 'required',
-            'old_password' => 'required',
-            'username' => 'required',
-            'password' => 'nullable|min:6',
-        ]);
-        $admin = Admin::first();
-        // Validasi username dan password lama
-        if ($request->old_username !== $admin->username || !Hash::check($request->old_password, $admin->password)) {
-            return back()->withErrors(['old_username' => 'Username atau password lama salah']);
+       $request->validate([
+        'username'      => 'required|string|max:255',
+        'old_password'  => 'nullable|string',
+        'password'      => 'nullable|string|min:6|confirmed', // pakai confirmed untuk konfirmasi password
+    ]);
+
+    $admin = User::first();
+
+    // Update username langsung (tidak perlu cek password lama kalau hanya ganti username)
+    $admin->name = $request->username;
+
+    // Kalau user isi password baru → wajib cek password lama
+    if ($request->filled('password')) {
+        if (!$request->filled('old_password')) {
+            return back()->withErrors(['old_password' => 'Password lama wajib diisi untuk mengganti password baru']);
         }
-        $admin->username = $request->username;
-        if ($request->filled('password')) {
-            $admin->password = Hash::make($request->password);
+
+        if (!Hash::check($request->old_password, $admin->password)) {
+            return back()->withErrors(['old_password' => 'Password lama salah']);
         }
-        $admin->save();
+
+        // Jika benar, update password baru
+        $admin->password = Hash::make($request->password);
+    }
+
+    $admin->save();
+
         return redirect()->route('login')->with('success', 'Akun berhasil diubah');
     }
 
